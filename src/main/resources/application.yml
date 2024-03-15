@@ -11,7 +11,7 @@ server:
 # mybatis-plus 配置
 mybatis-plus:
   configuration:
-    map-underscore-to-camel-case: true
+    map-underscore-to-camel-case: false
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     db-config:
@@ -51,3 +51,8 @@ yixian:
     access-key-id: your_access-key-id
     access-key-secret: your_access-key-secret
     bucket-name: your_bucket-name
+
+yixianapi:
+  client:
+    access-key: yixian
+    secret-key: yixian123

@@ -64,6 +64,18 @@ public class User implements Serializable {
     private String userProfile;
 
     /**
+     * 签名 accessKey
+     */
+    @TableField(value = "accessKey")
+    private String accessKey;
+
+    /**
+     * 签名 secretKey
+     */
+    @TableField(value = "secretKey")
+    private String secretKey;
+
+    /**
      * 用户角色：user/admin/ban
      */
     @TableField(value = "userRole")

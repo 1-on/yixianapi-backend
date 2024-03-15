@@ -36,6 +36,11 @@
             <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
             <version>4.4.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.yixian</groupId>
+            <artifactId>yixianapi-client-sdk</artifactId>
+            <version>0.0.1</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->
         <dependency>
             <groupId>cn.hutool</groupId>

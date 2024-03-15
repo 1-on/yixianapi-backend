@@ -1,6 +1,7 @@
 package com.yixian.yixianapi.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.RandomUtil;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -76,10 +77,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         }
         // 2.加密
         String encryptPassword = DigestUtils.md5DigestAsHex((SALT + userPassword).getBytes());
-        // 3.插入数据
+        // 3.分配accessKey,secretKey
+        String accessKey = DigestUtils.md5DigestAsHex((SALT + userAccount + RandomUtil.randomNumbers(5)).getBytes());
+        String secretKey = DigestUtils.md5DigestAsHex((SALT + userAccount + RandomUtil.randomNumbers(8)).getBytes());
+        // 4.插入数据
         User user = new User();
         user.setUserAccount(userAccount);
         user.setUserPassword(encryptPassword);
+        user.setAccessKey(accessKey);
+        user.setSecretKey(secretKey);
         boolean saveResult = this.save(user);
         if (!saveResult) {
             throw new BaseException(MessageConstant.REGISTER_FAILED);
@@ -220,6 +226,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             return new ArrayList<>();
         }
         return userList.stream().map(this::getUserVO).collect(Collectors.toList());
+    }
+
+    @Override
+    public boolean isAdmin(Long currentId) {
+        User user = this.getById(currentId);
+        return user != null && UserRoleEnum.ADMIN.getValue().equals(user.getUserRole());
     }
 }
 
