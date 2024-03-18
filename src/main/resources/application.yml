@@ -56,3 +56,14 @@ yixianapi:
   client:
     access-key: yixian
     secret-key: yixian123
+
+dubbo:
+  application:
+    qosEnable: false
+    name: dubbo-springboot-domo-provider
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    id: nacos-registry
+    address: nacos://localhost:8848

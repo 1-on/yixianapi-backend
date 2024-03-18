@@ -1,15 +1,13 @@
 package com.yixian.yixianapi.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yixian.yixianapi.common.DeleteRequest;
 import com.yixian.yixianapi.common.Result;
 import com.yixian.yixianapi.constant.MessageConstant;
 import com.yixian.yixianapi.context.BaseContext;
 import com.yixian.yixianapi.exception.BaseException;
-import com.yixian.yixianapi.model.dto.userinterfaceinfo.UserInterfaceInfoAddDTO;
-import com.yixian.yixianapi.model.dto.userinterfaceinfo.UserInterfaceInfoEditDTO;
-import com.yixian.yixianapi.model.dto.userinterfaceinfo.UserInterfaceInfoQueryDTO;
-import com.yixian.yixianapi.model.dto.userinterfaceinfo.UserInterfaceInfoUpdateDTO;
+import com.yixian.yixianapi.model.dto.userinterfaceinfo.*;
 import com.yixian.yixianapi.model.entity.UserInterfaceInfo;
 import com.yixian.yixianapi.model.vo.UserInterfaceInfoVO;
 import com.yixian.yixianapi.service.UserInterfaceInfoService;
@@ -233,6 +231,39 @@ public class UserInterfaceInfoController {
         }
         boolean result = userInterfaceInfoService.updateById(userInterfaceInfo);
         return Result.success(result);
+    }
+
+    /**
+     * 增加调用次数
+     *
+     * @param addInvokeNumDTO
+     * @return
+     */
+    @PostMapping("/addInvokeNum")
+    public Result<String> addInvokeNum(@RequestBody AddInvokeNumDTO addInvokeNumDTO) {
+        final Integer DEFAULT_ADD_INVOKE_NUM = 5;
+        if (addInvokeNumDTO == null || addInvokeNumDTO.getInterfaceInfoId() <= 0) {
+            throw new BaseException(MessageConstant.REQUEST_PARAMS_ERROR);
+        }
+        Long interfaceInfoId = addInvokeNumDTO.getInterfaceInfoId();
+        Long userId = BaseContext.getCurrentId();
+        QueryWrapper<UserInterfaceInfo> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("interfaceInfoId", interfaceInfoId);
+        queryWrapper.eq("userId", userId);
+        UserInterfaceInfo userInterfaceInfo = userInterfaceInfoService.getOne(queryWrapper);
+        // 没有调用过接口，创建记录
+        if (userInterfaceInfo == null) {
+            userInterfaceInfo = new UserInterfaceInfo();
+            userInterfaceInfo.setInterfaceInfoId(interfaceInfoId);
+            userInterfaceInfo.setUserId(userId);
+            userInterfaceInfo.setLeftNum(DEFAULT_ADD_INVOKE_NUM);
+            userInterfaceInfoService.save(userInterfaceInfo);
+        } else {
+            // 已经存在调用记录，修改剩余调用次数
+            userInterfaceInfo.setLeftNum(userInterfaceInfo.getLeftNum() + DEFAULT_ADD_INVOKE_NUM);
+            userInterfaceInfoService.updateById(userInterfaceInfo);
+        }
+        return Result.success("调用次数 + 5");
     }
 
 }

@@ -77,6 +77,7 @@ public class InterfaceInfoServiceImpl extends ServiceImpl<InterfaceInfoMapper, I
         String name = interfaceInfoQueryDTO.getName();
         String description = interfaceInfoQueryDTO.getDescription();
         String url = interfaceInfoQueryDTO.getUrl();
+        String requestParams = interfaceInfoQueryDTO.getRequestParams();
         String requestHeader = interfaceInfoQueryDTO.getRequestHeader();
         String responseHeader = interfaceInfoQueryDTO.getResponseHeader();
         Integer status = interfaceInfoQueryDTO.getStatus();
@@ -91,6 +92,7 @@ public class InterfaceInfoServiceImpl extends ServiceImpl<InterfaceInfoMapper, I
         queryWrapper.like(StringUtils.isNotBlank(name), "name", name);
         queryWrapper.like(StringUtils.isNotBlank(description), "description", description);
         queryWrapper.like(StringUtils.isNotBlank(url), "url", url);
+        queryWrapper.like(StringUtils.isNotBlank(requestParams), "requestParams", requestParams);
         queryWrapper.like(StringUtils.isNotBlank(requestHeader), "requestHeader", requestHeader);
         queryWrapper.like(StringUtils.isNotBlank(responseHeader), "responseHeader", responseHeader);
 

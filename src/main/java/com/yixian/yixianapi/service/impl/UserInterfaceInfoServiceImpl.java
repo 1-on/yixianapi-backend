@@ -110,6 +110,18 @@ public class UserInterfaceInfoServiceImpl extends ServiceImpl<UserInterfaceInfoM
     }
 
     @Override
+    public int getLeftInvokeNum(long interfaceInfoId, long userId) {
+        QueryWrapper<UserInterfaceInfo> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("interfaceInfoId", interfaceInfoId);
+        queryWrapper.eq("userId", userId);
+        UserInterfaceInfo userInterfaceInfo = this.getOne(queryWrapper);
+        if (userInterfaceInfo == null) {
+            return 0;
+        }
+        return userInterfaceInfo.getLeftNum();
+    }
+
+    @Override
     public boolean invokeCount(long interfaceInfoId, long userId) {
         if (interfaceInfoId <= 0 || userId <= 0) {
             throw new BaseException(MessageConstant.REQUEST_PARAMS_ERROR);

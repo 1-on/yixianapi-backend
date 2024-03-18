@@ -34,6 +34,14 @@ public class InterfaceInfoQueryDTO extends PageRequest implements Serializable {
     private String url;
 
     /**
+     * 请求参数
+     * [
+     * {"name": "username"; "type": "string"}
+     * ]
+     */
+    private String requestParams;
+
+    /**
      * 请求头
      */
     private String requestHeader;

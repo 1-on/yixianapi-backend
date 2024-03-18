@@ -316,7 +316,7 @@ public class InterfaceInfoController {
             throw new BaseException(MessageConstant.NOT_FOUND_ERROR);
         }
         if (oldInterfaceInfo.getStatus() == InterfaceInfoStatusEnum.OFFLINE.getValue()) {
-            throw new BaseException(MessageConstant.SYSTEM_ERROR);
+            throw new BaseException(MessageConstant.INTERFACE_NOT_OPEN);
         }
 
         User loginUser = userService.getLoginUser();

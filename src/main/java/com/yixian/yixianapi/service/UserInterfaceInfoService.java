@@ -48,6 +48,9 @@ public interface UserInterfaceInfoService extends IService<UserInterfaceInfo> {
     Page<UserInterfaceInfoVO> getUserInterfaceInfoVOPage(Page<UserInterfaceInfo> userInterfaceInfoPage);
 
 
+    int getLeftInvokeNum(long interfaceInfoId, long userId);
+
+
     /**
      * 调用接口统计
      *

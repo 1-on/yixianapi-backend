@@ -20,4 +20,5 @@ public class MessageConstant {
     public static final String NOT_FOUND_ERROR = "请求数据不存在";
     public static final String NO_AUTH_ERROR = "无权限";
     public static final String PARAMS_ERROR = "参数错误";
+    public static final String INTERFACE_NOT_OPEN = "接口未开放";
 }
