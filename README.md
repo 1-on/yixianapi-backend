@@ -1,50 +1,50 @@
-# SpringBoot 项目初始化模板（持续更新）
+# API 接口调用平台DEMO（接入第三方API并提供在线调用地址）
 
+（此仓库为后端代码）[前端仓库](https://github.com/1-on/yixianapi-frontend)
 [toc]
 
 > 作者：[一弦](https://github.com/1-on)
 
-基于java SpringBoot 的项目初始化模板，整合了常用框架和示例代码
+### 项目功能
 
-## 模板特点
+- 提供 API 接口供开发者调用
+- 管理员可以对接口进行增删改查、上线、下线
+- 用户可以注册登录并开通接口调用权限、浏览接口、在线调试
+- 开发者可以使用客户端 SDK 轻松在代码中调用接口
 
-### 主流框架 & 特性
+### 技术栈
 
-- Spring Boot 3.2.2 （贼新！）
-- Spring MVC
-- Mybatis + MyBatis Plus （开启分页）
-- Spring Boot 调试工具和项目处理器
+#### 后端
 
-### 数据存储
-
+- springboot 3.2.2
 - MySQL 数据库
+- MyBatis-Plus 以及 MyBatis X 自动生成
+- API 签名认证（Http 调用）
+- RPC 调用（dubbo + nacos）
+- Spring Cloud Gateway 微服务网关
+- Swagger + Knife4j 接口文档生成
+- SpringBoot Starter (SDK 开发)
 
-### 工具类
+#### 前端
 
-- Lombok 注解
+- React 18
+- Ant Design Pro 6.x 脚手架
+- Ant Design & ProComponents 组件库
+- OpenAPI 前端代码生成
 
-### 业务特性
+### 模块介绍
 
-- 全局异常处理器
-- 封装通过响应类
-- Swagger + Knife4j 接口文档
-- Jwt 登录校验
-- 全局跨域请求
-- ThreadLocal 获取上下文信息
-- 自定义配置信息
-- 长整数精度丢失解决
-- 支持限流操作
+- yixianapi-backend 平台主要后端
+- yixianapi-client-sdk 供开发者调用的SDK
+- yixianapi-common rpc调用接口
+- yixianapi-gateway api网关
+- yixianapi-interface 模拟接口
 
-### 业务功能
+### 项目截图
 
-- 用户登录、注册、增删改查
-- 阿里云对象存储
-
-### 单元测试
-
-- JUnit5单元测试
-
-### 架构设计
-
-- 合理分层
-
+![image](https://github.com/1-on/yixianapi-backend/blob/master/doc/imgs/img.png)
+![image](https://github.com/1-on/yixianapi-backend/blob/master/doc/imgs/img_1.png)
+![image](https://github.com/1-on/yixianapi-backend/blob/master/doc/imgs/img_2.png)
+![image](https://github.com/1-on/yixianapi-backend/blob/master/doc/imgs/img_3.png)
+![image](https://github.com/1-on/yixianapi-backend/blob/master/doc/imgs/img_4.png)
+![image](https://github.com/1-on/yixianapi-backend/blob/master/doc/imgs/img_5.png)
