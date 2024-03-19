@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: yixianapi-interface
+
+server:
+  port: 8123
+  servlet:
+    context-path: /api
+
+yixianapi:
+  client:
+    access-key: yixian
+    secret-key: yixian123

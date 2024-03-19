@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: yixianapi-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: api_route
+          uri: http://localhost:8123
+          predicates:
+            - Path=/api/**
+#        - id: add_request_header_route
+#          uri: http://localhost:8123
+#          predicates:
+#            - Path=/api/name
+#          filters:
+#            - AddRequestHeader=yixian, blue
+#            - AddRequestParameter=name,dog
+#            - name: CircuitBreaker
+#              args:
+#                name: myCircuitBreaker
+#                fallbackUri: forward:/fallback
+#        - id: yixian-fallback
+#          uri: http://www.yixianweb.cn
+#          predicates:
+#            - Path=/fallback
+server:
+  port: 8090
+
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          gateway: trace
+dubbo:
+  application:
+    qosEnable: false
+    name: dubbo-springboot-domo-consumer
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    id: nacos-registry
+    address: nacos://localhost:8848
